@@ -1,0 +1,155 @@
+/* Wanderly Main Style & Travel Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --primary-navy: #0A1E3F;
+  --primary-blue: #0284C7;
+  --accent-amber: #F59E0B;
+  --accent-orange: #EA580C;
+  --neutral-bg: #F8FAFC;
+  --card-shadow: 0 10px 25px -5px rgba(10, 30, 63, 0.08), 0 8px 10px -6px rgba(10, 30, 63, 0.04);
+  --card-shadow-hover: 0 20px 30px -10px rgba(10, 30, 63, 0.15), 0 10px 12px -5px rgba(10, 30, 63, 0.08);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #1E293B;
+  background-color: #F8FAFC;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-heading {
+  letter-spacing: -0.02em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Glassmorphism & Cards */
+.wanderly-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.wanderly-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
+}
+.wanderly-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* MakeMyTrip Style Booking Tab Pill */
+.booking-tab-btn {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+.booking-tab-btn.active {
+  color: #0284C7;
+  font-weight: 700;
+}
+.booking-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0284C7 0%, #38BDF8 100%);
+  border-radius: 9999px;
+}
+
+/* AI Planner Pulse Badge */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+  }
+}
+.ai-glow-badge {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Leaflet Map Height & Rounding */
+#itinerary-map {
+  height: 380px;
+  width: 100%;
+  border-radius: 1rem;
+  z-index: 10;
+}
+
+/* Timeline vertical tree line */
+.timeline-stem {
+  position: relative;
+}
+.timeline-stem::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 17px;
+  width: 2px;
+  background: #E2E8F0;
+}
+
+/* Destination Card Overlay */
+.destination-card-gradient {
+  background: linear-gradient(180deg, rgba(10, 30, 63, 0) 40%, rgba(10, 30, 63, 0.92) 100%);
+}
+
+/* PRINT & PDF EXPORT STYLES */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  /* Hide interactive elements, navbar, footer, search tabs, chat, modals */
+  nav, footer, #hero-search-section, #trending-section, #offers-section, #how-it-works-section, #reviews-section, .no-print, button, input, textarea {
+    display: none !important;
+  }
+  
+  #itinerary-results-container {
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .print-only-header {
+    display: block !important;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #0A1E3F;
+    padding-bottom: 16px;
+  }
+  
+  .wanderly-card {
+    box-shadow: none !important;
+    border: 1px solid #CBD5E1 !important;
+    page-break-inside: avoid;
+    margin-bottom: 16px;
+  }
+}
+
+.print-only-header {
+  display: none;
+}
